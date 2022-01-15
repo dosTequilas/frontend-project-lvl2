@@ -16,3 +16,6 @@ link:
 
 genDiff:
 	./bin/gendiff.js ./__fixtures__/file1.json ./__fixtures__/file2.json
+
+test:
+	npm run test
