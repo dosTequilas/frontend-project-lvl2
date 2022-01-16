@@ -9,7 +9,7 @@ lint:
 	npx eslint .
 
 test-coverage:
-	echo "test"
+	npm test -- --coverage --coverageProvider=v8
 
 link:
 	npm link
