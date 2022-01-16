@@ -14,19 +14,19 @@ const diff = (file1, file2) => {
 
   let result = commonKeys.map((key) => {
     if (obj1[key] === obj2[key]) {
-      return `${key}: ${obj1[key]}`;
+      return `    ${key}: ${obj1[key]}`;
     } else if (!obj2[key]) {
-      return `- ${key}: ${obj1[key]}`;
+      return `  - ${key}: ${obj1[key]}`;
     } else if (!obj1[key]) {
-      return `+ ${key}: ${obj2[key]}`;
+      return `  + ${key}: ${obj2[key]}`;
     } else if (obj1.hasOwnProperty(key) && obj2.hasOwnProperty(key) && obj1[key] !== obj2[key]) {
-      return `- ${key}: ${obj1[key]}` + `\n` + `+ ${key}: ${obj2[key]}`;
+      return `  - ${key}: ${obj1[key]}` + `\n` + `  + ${key}: ${obj2[key]}`;
     } else {
       return null;
     }
   });
 
-  return result.join('\n');
+  return ['{', ...result, '}'].join('\n');
 };
 
 export default diff;
