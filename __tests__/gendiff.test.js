@@ -1,6 +1,6 @@
-import diff from '../src/genDiff';
-import path from 'path';
 import { readFileSync } from 'fs';
+import path from 'path';
+import diff from '../src/genDiff.js';
 
 // JSON.parse - собирает объект из файла
 // readFileSync (из библиотеки fs) - чтение файла

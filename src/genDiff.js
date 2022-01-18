@@ -12,18 +12,24 @@ const diff = (file1, file2) => {
   const keys2 = Object.keys(obj2);
   const commonKeys = _.sortBy(_.union(keys1, keys2));
 
-  let result = commonKeys.map((key) => {
+  const result = commonKeys.map((key) => {
     if (obj1[key] === obj2[key]) {
       return `    ${key}: ${obj1[key]}`;
-    } else if (!obj2[key]) {
-      return `  - ${key}: ${obj1[key]}`;
-    } else if (!obj1[key]) {
-      return `  + ${key}: ${obj2[key]}`;
-    } else if (obj1.hasOwnProperty(key) && obj2.hasOwnProperty(key) && obj1[key] !== obj2[key]) {
-      return `  - ${key}: ${obj1[key]}` + `\n` + `  + ${key}: ${obj2[key]}`;
-    } else {
-      return null;
     }
+    if (!obj2[key]) {
+      return `  - ${key}: ${obj1[key]}`;
+    }
+    if (!obj1[key]) {
+      return `  + ${key}: ${obj2[key]}`;
+    }
+    if (
+      Object.prototype.hasOwnProperty.call(obj1, key)
+      && Object.prototype.hasOwnProperty.call(obj2, key)
+      && obj1[key] !== obj2[key]
+    ) {
+      return `  - ${key}: ${obj1[key]}\n  + ${key}: ${obj2[key]}`;
+    }
+    return null;
   });
 
   return ['{', ...result, '}'].join('\n');

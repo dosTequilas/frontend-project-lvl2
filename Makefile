@@ -19,3 +19,6 @@ genDiff:
 
 test:
 	npm run test
+
+test-watch:
+	npm run testWatch

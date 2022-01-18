@@ -5,7 +5,8 @@
   "description": "[![Actions Status](https://github.com/dosTequilas/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/dosTequilas/frontend-project-lvl2/actions)",
   "main": "./src/genDiff.js",
   "scripts": {
-    "test": "jest"
+    "test": "npx jest --bail",
+    "testWatch": "npx jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -19,13 +20,14 @@
   "homepage": "https://github.com/dosTequilas/frontend-project-lvl2#readme",
   "dependencies": {
     "commander": "^8.3.0",
+    "lodash": "^4.17.21",
     "path": "^0.12.7"
   },
   "devDependencies": {
     "eslint": "^8.6.0",
-    "eslint-plugin-jest": "^25.7.0",
-    "jest": "^27.4.7",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4"
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.7.0",
+    "jest": "^27.4.7"
   }
 }
