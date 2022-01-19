@@ -10,14 +10,9 @@ import diff from '../src/genDiff.js';
 const getFixturePath = (filename) => path.resolve('__fixtures__', filename);
 const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
-// const file1 = JSON.parse(readFile('file1.json'));
-// const file2 = JSON.parse(readFile('file2.json'));
 const correct = readFile('correctResult.txt');
 
-jsonTest('diff', () => {
+test('diff', () => {
   expect(diff('./__fixtures__/file1.json', './__fixtures__/file2.json')).toBe(correct);
-});
-
-ymlTest('diff', () => {
-  expect(diff('./__fixtures__/file1.yml', './__fixtures__/file2.yml')).toBe(correct)
+  expect(diff('./__fixtures__/file1.yml', './__fixtures__/file2.yml')).toBe(correct);
 });
