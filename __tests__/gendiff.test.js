@@ -14,6 +14,10 @@ const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 // const file2 = JSON.parse(readFile('file2.json'));
 const correct = readFile('correctResult.txt');
 
-test('diff', () => {
+jsonTest('diff', () => {
   expect(diff('./__fixtures__/file1.json', './__fixtures__/file2.json')).toBe(correct);
+});
+
+ymlTest('diff', () => {
+  expect(diff('./__fixtures__/file1.yml', './__fixtures__/file2.yml')).toBe(correct)
 });

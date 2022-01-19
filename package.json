@@ -20,6 +20,7 @@
   "homepage": "https://github.com/dosTequilas/frontend-project-lvl2#readme",
   "dependencies": {
     "commander": "^8.3.0",
+    "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
     "path": "^0.12.7"
   },
