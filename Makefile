@@ -15,7 +15,7 @@ link:
 	npm link
 
 genDiff:
-	./bin/gendiff.js ./__fixtures__/file1.json ./__fixtures__/file2.json
+	./bin/gendiff.js ./__fixtures__/file1.yml ./__fixtures__/file2.yml
 
 test:
 	npm run test

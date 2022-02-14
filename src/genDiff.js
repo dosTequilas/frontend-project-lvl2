@@ -2,46 +2,52 @@ import _ from 'lodash';
 import { readFileSync } from 'fs';
 import path from 'path';
 import parse from '../parsers/index.js';
+import treeBuilder from './treeBuilder.js';
+import formatter from './formatter.js';
+
+/*
+
+Parse - достает информацию по указанному пути
+
+Treebuilder отдельная функция, которая строит дерево (Hexlet - виртуальная файловая система)
+и находит разницу. вынести в отлдельный модуль
+
+Formatter - форматирует строку, исходя из типов, попробовать switch
+если нестед - вызвать эту-же функцию.
+
+Diff - вызывает parse, treebuilder, formatter,
+возвращает результат и экспортируется в исполняемый файл и в тест
+
+*/
+
+// const formatter = (unformattedString) => {
+
+// };
 
 const diff = (file1, file2) => {
+  // собираем путь из текущей директории + пути до файла
   const path1 = path.resolve(process.cwd(), file1);
   const path2 = path.resolve(process.cwd(), file2);
 
+  // определяем формат
   const format1 = path.extname(path1);
   const format2 = path.extname(path2);
 
+  // получаем содерждимое пути
   const data1 = readFileSync(path1);
   const data2 = readFileSync(path2);
 
+  // разбираем строку JSON
   const obj1 = parse(data1, format1);
   const obj2 = parse(data2, format2);
 
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
+  // строим древовидную структуру
+  const tree = treeBuilder(obj1, obj2);
+  // применяем форматтер
+  const result = formatter(tree);
 
-  const commonKeys = _.sortBy(_.union(keys1, keys2));
-
-  const result = commonKeys.map((key) => {
-    if (obj1[key] === obj2[key]) {
-      return `    ${key}: ${obj1[key]}`;
-    }
-    if (!obj2[key]) {
-      return `  - ${key}: ${obj1[key]}`;
-    }
-    if (!obj1[key]) {
-      return `  + ${key}: ${obj2[key]}`;
-    }
-    if (
-      Object.prototype.hasOwnProperty.call(obj1, key)
-      && Object.prototype.hasOwnProperty.call(obj2, key)
-      && obj1[key] !== obj2[key]
-    ) {
-      return `  - ${key}: ${obj1[key]}\n  + ${key}: ${obj2[key]}`;
-    }
-    return null;
-  });
-
-  return ['{', ...result, '}'].join('\n');
+  // return JSON.stringify(tree, null, 2);
+  return result;
 };
 
 export default diff;

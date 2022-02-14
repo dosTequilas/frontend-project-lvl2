@@ -5,7 +5,6 @@ import diff from '../src/genDiff.js';
 // JSON.parse - собирает объект из файла
 // readFileSync (из библиотеки fs) - чтение файла
 // path.resolve - собирает путь из отрезков
-// const correct = JSON.parse(readFileSync(path.resolve(__dirname, correctResult.json)));
 
 const getFixturePath = (filename) => path.resolve('__fixtures__', filename);
 const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
