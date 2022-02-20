@@ -24,7 +24,7 @@ Diff - вызывает parse, treebuilder, formatter,
 
 // };
 
-const diff = (file1, file2) => {
+const diff = (file1, file2, formatName = 'stylish') => {
   // собираем путь из текущей директории + пути до файла
   const path1 = path.resolve(process.cwd(), file1);
   const path2 = path.resolve(process.cwd(), file2);
