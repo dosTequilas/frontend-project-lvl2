@@ -52,11 +52,15 @@ const formatter = (tree) => {
       }
       if (key.type === 'changed') {
         const tab = getTabSize(depth);
-        const result = `${tab}- ${key.name}: ${getFormattedValue(
-          key.oldValue,
-          depth + 1
-        )}\n${tab}+ ${key.name}: ${getFormattedValue(key.newValue, depth + 1)}`;
-        return result;
+        // const result = `${tab}- ${key.name}: ${getFormattedValue(
+        //   key.oldValue,
+        //   depth + 1
+        // )}\n${tab}+ ${key.name}: ${getFormattedValue(key.newValue, depth + 1)}`;
+        // return result;
+        return [
+          `${tab}- ${key.name}: ${getFormattedValue(key.oldValue, depth + 1)}`,
+          `${tab}+ ${key.name}: ${getFormattedValue(key.newValue, depth + 1)}`,
+        ];
       }
       return key.name;
     });
