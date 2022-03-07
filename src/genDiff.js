@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import parse from '../parsers/index.js';
 import treeBuilder from './treeBuilder.js';
-import formatter from './formatter.js';
+import formatter from './formatters/index.js';
 
 /*
 
@@ -44,7 +44,7 @@ const diff = (file1, file2, formatName = 'stylish') => {
   // строим древовидную структуру
   const tree = treeBuilder(obj1, obj2);
   // применяем форматтер
-  const result = formatter(tree);
+  const result = formatter(tree, formatName);
 
   // return JSON.stringify(tree, null, 2);
   return result;

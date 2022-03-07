@@ -22,3 +22,9 @@ test:
 
 test-watch:
 	npm run testWatch
+
+genPlain:
+	./bin/gendiff.js ./__fixtures__/file1.json ./__fixtures__/file2.json -f plain
+
+genStylish:
+	./bin/gendiff.js ./__fixtures__/file1.json ./__fixtures__/file2.json -f stylish
