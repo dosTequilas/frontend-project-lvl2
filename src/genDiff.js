@@ -1,4 +1,4 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 import { readFileSync } from 'fs';
 import path from 'path';
 import parse from '../parsers/index.js';
