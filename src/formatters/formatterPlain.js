@@ -13,7 +13,9 @@ const valueChecker = (val) => {
 
 const plainFormatter = (tree) => {
   const iter = (node, parent) => {
-    const diffColl = node.flatMap(({ name, type, children, value, oldValue, newValue }) => {
+    const diffColl = node.flatMap(({
+      name, type, children, value, oldValue, newValue,
+    }) => {
       const newPath = parent ? `${parent}.${name}` : `${name}`;
       if (type === 'nested') {
         return iter(children, newPath);
@@ -31,9 +33,9 @@ const plainFormatter = (tree) => {
         return result;
       }
       if (type === 'changed') {
-        const result = `Property '${newPath}' was updated. From ${valueChecker(
-          oldValue
-        )} to ${valueChecker(newValue)}`;
+        const checkOld = valueChecker(oldValue);
+        const checkNew = valueChecker(newValue);
+        const result = `Property '${newPath}' was updated. From ${checkOld} to ${checkNew}`;
         return result;
       }
       return name;
@@ -42,7 +44,6 @@ const plainFormatter = (tree) => {
   };
   const result = iter(tree, '');
   return result;
-  console.log(result);
 };
 
 export default plainFormatter;

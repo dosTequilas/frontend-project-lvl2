@@ -30,6 +30,7 @@ const treeBuilder = (obj1, obj2) => {
     if (!obj2[key]) {
       return { name: key, type: 'deleted', value: obj1[key] };
     }
+    return null;
   });
   return result;
 };
