@@ -1,5 +1,6 @@
-import stylish from './formatter.js';
+import stylish from './formatterStylish.js';
 import plain from './formatterPlain.js';
+import json from './formatterJson.js';
 
 const formatter = (tree, formatType) => {
   if (formatType === 'stylish') {
@@ -7,6 +8,9 @@ const formatter = (tree, formatType) => {
   }
   if (formatType === 'plain') {
     return plain(tree);
+  }
+  if (formatType === 'json') {
+    return json(tree);
   }
   return null;
 };

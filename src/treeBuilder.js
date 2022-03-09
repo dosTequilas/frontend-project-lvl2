@@ -7,7 +7,7 @@ const treeBuilder = (obj1, obj2) => {
 
   const result = commonKeys.map((key) => {
     if (obj1[key] === obj2[key]) {
-      return { name: key, type: 'unchanged', value: obj1[key] }; // вместо строк - объект, тут обрабатывается 1 ключ
+      return { name: key, type: 'unchanged', value: obj1[key] };
     }
     if (!obj1[key] && obj1[key] !== '') {
       return { name: key, type: 'added', value: obj2[key] };

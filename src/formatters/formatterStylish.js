@@ -1,12 +1,8 @@
-// import { keys } from 'lodash';
-
 import _ from 'lodash';
 
 const getTabSize = (currentDepth, multiplier = 4) => {
   const space = ' ';
   const result = space.repeat(currentDepth * multiplier - 2);
-  // console.log(currentDepth);
-  // console.log(multiplier);
   return result;
 };
 
@@ -52,11 +48,6 @@ const formatter = (tree) => {
       }
       if (key.type === 'changed') {
         const tab = getTabSize(depth);
-        // const result = `${tab}- ${key.name}: ${getFormattedValue(
-        //   key.oldValue,
-        //   depth + 1
-        // )}\n${tab}+ ${key.name}: ${getFormattedValue(key.newValue, depth + 1)}`;
-        // return result;
         return [
           `${tab}- ${key.name}: ${getFormattedValue(key.oldValue, depth + 1)}`,
           `${tab}+ ${key.name}: ${getFormattedValue(key.newValue, depth + 1)}`,
@@ -71,6 +62,3 @@ const formatter = (tree) => {
 };
 
 export default formatter;
-
-// changed - formatted old value + formatted new value - потом соединить
-// stylish - форматтер по умолчанию в diff
