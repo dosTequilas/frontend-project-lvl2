@@ -3,15 +3,15 @@ import plain from './formatterPlain.js';
 import json from './formatterJson.js';
 
 const formatter = (tree, formatType) => {
-  if (formatType === 'stylish') {
-    return stylish(tree);
+  switch (formatType) {
+    case 'stylish':
+      return stylish(tree);
+    case 'plain':
+      return plain(tree);
+    case 'json':
+      return json(tree);
+    default:
+      return null;
   }
-  if (formatType === 'plain') {
-    return plain(tree);
-  }
-  if (formatType === 'json') {
-    return json(tree);
-  }
-  return null;
 };
 export default formatter;

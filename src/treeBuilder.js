@@ -6,13 +6,16 @@ const treeBuilder = (obj1, obj2) => {
   const commonKeys = _.sortBy(_.union(keys1, keys2));
 
   const result = commonKeys.map((key) => {
+    if (!_.has(obj1, key)) {
+      return { name: key, type: 'added', value: obj2[key] };
+    }
+    if (!_.has(obj2, key)) {
+      return { name: key, type: 'deleted', value: obj1[key] };
+    }
     if (obj1[key] === obj2[key]) {
       return { name: key, type: 'unchanged', value: obj1[key] };
     }
-    if (!obj1[key] && obj1[key] !== '') {
-      return { name: key, type: 'added', value: obj2[key] };
-    }
-    if (typeof obj1[key] === 'object' && typeof obj2[key] === 'object') {
+    if (_.isPlainObject(obj1[key]) && _.isPlainObject(obj2[key])) {
       return {
         name: key,
         type: 'nested',
@@ -26,9 +29,6 @@ const treeBuilder = (obj1, obj2) => {
         oldValue: obj1[key],
         newValue: obj2[key],
       };
-    }
-    if (!obj2[key]) {
-      return { name: key, type: 'deleted', value: obj1[key] };
     }
     return null;
   });

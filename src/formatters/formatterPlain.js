@@ -17,28 +17,22 @@ const plainFormatter = (tree) => {
       name, type, children, value, oldValue, newValue,
     }) => {
       const newPath = parent ? `${parent}.${name}` : `${name}`;
-      if (type === 'nested') {
-        return iter(children, newPath);
+      const chOld = valueChecker(oldValue);
+      const chNew = valueChecker(newValue);
+      switch (type) {
+        case 'nested':
+          return iter(children, newPath);
+        case 'unchanged':
+          return [];
+        case 'deleted':
+          return `Property '${newPath}' was removed`;
+        case 'added':
+          return `Property '${newPath}' was added with value: ${valueChecker(value)}`;
+        case 'changed':
+          return `Property '${newPath}' was updated. From ${chOld} to ${chNew}`;
+        default:
+          return name;
       }
-      if (type === 'unchanged') {
-        const result = [];
-        return result;
-      }
-      if (type === 'deleted') {
-        const result = `Property '${newPath}' was removed`;
-        return result;
-      }
-      if (type === 'added') {
-        const result = `Property '${newPath}' was added with value: ${valueChecker(value)}`;
-        return result;
-      }
-      if (type === 'changed') {
-        const checkOld = valueChecker(oldValue);
-        const checkNew = valueChecker(newValue);
-        const result = `Property '${newPath}' was updated. From ${checkOld} to ${checkNew}`;
-        return result;
-      }
-      return name;
     });
     return diffColl.join('\n');
   };
