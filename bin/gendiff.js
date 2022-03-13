@@ -13,7 +13,6 @@ program
   .action((filepath1, filepath2, options) => {
     const formatType = options.format;
     console.log(genDiff(filepath1, filepath2, formatType));
-    console.log(options);
   })
   .option('-f, --format [type]', 'output format', 'stylish')
   .parse(process.argv);
