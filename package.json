@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "A tool for finding difference between files",
-  "main": "./src/gendiff.js",
+  "main": "./src/genDiff.js",
   "scripts": {
     "test": "npx jest --bail",
     "testWatch": "npx jest --watchAll"
@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "bin": {
-    "genDiff": "bin/genDiff.js"
+    "genDiff": "bin/gendiff.js"
   },
   "bugs": {
     "url": "https://github.com/dosTequilas/frontend-project-lvl2/issues"
