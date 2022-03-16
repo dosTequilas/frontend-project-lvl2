@@ -1,4 +1,4 @@
-const valueChecker = (val) => {
+const formatValue = (val) => {
   if (typeof val === 'string') {
     return `'${val}'`;
   }
@@ -17,8 +17,6 @@ const plainFormatter = (tree) => {
       name, type, children, value, oldValue, newValue,
     }) => {
       const newPath = parent ? `${parent}.${name}` : `${name}`;
-      const chOld = valueChecker(oldValue);
-      const chNew = valueChecker(newValue);
       switch (type) {
         case 'nested':
           return iter(children, newPath);
@@ -27,9 +25,9 @@ const plainFormatter = (tree) => {
         case 'deleted':
           return `Property '${newPath}' was removed`;
         case 'added':
-          return `Property '${newPath}' was added with value: ${valueChecker(value)}`;
+          return `Property '${newPath}' was added with value: ${formatValue(value)}`;
         case 'changed':
-          return `Property '${newPath}' was updated. From ${chOld} to ${chNew}`;
+          return `Property '${newPath}' was updated. From ${formatValue(oldValue)} to ${formatValue(newValue)}`;
         default:
           return null;
       }

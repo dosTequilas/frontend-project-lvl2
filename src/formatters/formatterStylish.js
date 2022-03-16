@@ -25,33 +25,25 @@ const getFormattedValue = (value, depth) => {
 const formatter = (tree) => {
   const iter = (node, depth) => {
     const arrMap = node.map((key) => {
+      const tab = getTab(depth);
       switch (key.type) {
         case 'nested': {
           const formattedChildren = iter(key.children, depth + 1);
-          const tabNes = getTab(depth);
-          const nes = `${tabNes}  ${key.name}: {\n${formattedChildren}\n${tabNes}  }`;
-          return nes;
+          return `${tab}  ${key.name}: {\n${formattedChildren}\n${tab}  }`;
         }
         case 'unchanged': {
-          const tabUnc = getTab(depth);
-          const unc = `${tabUnc}  ${key.name}: ${getFormattedValue(key.value, depth + 1)}`;
-          return unc;
+          return `${tab}  ${key.name}: ${getFormattedValue(key.value, depth + 1)}`;
         }
         case 'deleted': {
-          const tabDel = getTab(depth);
-          const del = `${tabDel}- ${key.name}: ${getFormattedValue(key.value, depth + 1)}`;
-          return del;
+          return `${tab}- ${key.name}: ${getFormattedValue(key.value, depth + 1)}`;
         }
         case 'added': {
-          const tabAdd = getTab(depth);
-          const add = `${tabAdd}+ ${key.name}: ${getFormattedValue(key.value, depth + 1)}`;
-          return add;
+          return `${tab}+ ${key.name}: ${getFormattedValue(key.value, depth + 1)}`;
         }
         case 'changed': {
-          const tabCha = getTab(depth);
-          const formatted1 = `${tabCha}- ${key.name}: ${getFormattedValue(key.oldValue, depth + 1)}\n`;
-          const formatted2 = `${tabCha}+ ${key.name}: ${getFormattedValue(key.newValue, depth + 1)}`;
-          return formatted1 + formatted2;
+          const formattedOldValue = `${tab}- ${key.name}: ${getFormattedValue(key.oldValue, depth + 1)}\n`;
+          const formattedNewValue = `${tab}+ ${key.name}: ${getFormattedValue(key.newValue, depth + 1)}`;
+          return formattedOldValue + formattedNewValue;
         }
         default: {
           return null;
