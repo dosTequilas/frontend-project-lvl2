@@ -1,14 +1,14 @@
 const valueChecker = (val) => {
-  if (typeof val === 'boolean') {
-    return val;
-  }
-  if (typeof val !== 'object') {
+  if (typeof val === 'string') {
     return `'${val}'`;
   }
   if (val === null) {
     return null;
   }
-  return '[complex value]';
+  if (typeof val === 'object') {
+    return '[complex value]';
+  }
+  return val;
 };
 
 const plainFormatter = (tree) => {
@@ -31,7 +31,7 @@ const plainFormatter = (tree) => {
         case 'changed':
           return `Property '${newPath}' was updated. From ${chOld} to ${chNew}`;
         default:
-          return name;
+          return null;
       }
     });
     return diffColl.join('\n');
