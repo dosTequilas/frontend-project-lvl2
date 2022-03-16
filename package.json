@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "A tool for finding difference between files",
-  "main": "./src/genDiff.js",
+  "main": "./src/gendiff.js",
   "scripts": {
     "test": "npx jest --bail",
     "testWatch": "npx jest --watchAll"
