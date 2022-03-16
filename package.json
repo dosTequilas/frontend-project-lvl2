@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "bin": {
-    "genDiff": "bin/gendiff.js"
+    "gendiff": "bin/gendiff.js"
   },
   "bugs": {
     "url": "https://github.com/dosTequilas/frontend-project-lvl2/issues"
