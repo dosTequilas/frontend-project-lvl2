@@ -22,7 +22,7 @@ const treeBuilder = (obj1, obj2) => {
         children: treeBuilder(obj1[key], obj2[key]),
       };
     }
-    if (!_.isEqual(obj1[key], obj2[key]) && obj2[key] !== undefined) {
+    if (!_.isEqual(obj1[key], obj2[key])) {
       return {
         name: key,
         type: 'changed',
