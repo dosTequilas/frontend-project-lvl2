@@ -12,22 +12,20 @@ const formatValue = (val) => {
 };
 
 const plainFormatter = (tree) => {
-  const iter = (node, parent) => {
-    const diffColl = node.flatMap(({
-      name, type, children, value, oldValue, newValue,
-    }) => {
-      const newPath = parent ? `${parent}.${name}` : `${name}`;
-      switch (type) {
+  const iter = (children, parent) => {
+    const diffColl = children.flatMap((node) => {
+      const newPath = parent ? `${parent}.${node.name}` : `${node.name}`;
+      switch (node.type) {
         case 'nested':
-          return iter(children, newPath);
+          return iter(node.children, newPath);
         case 'unchanged':
           return [];
         case 'deleted':
           return `Property '${newPath}' was removed`;
         case 'added':
-          return `Property '${newPath}' was added with value: ${formatValue(value)}`;
+          return `Property '${newPath}' was added with value: ${formatValue(node.value)}`;
         case 'changed':
-          return `Property '${newPath}' was updated. From ${formatValue(oldValue)} to ${formatValue(newValue)}`;
+          return `Property '${newPath}' was updated. From ${formatValue(node.oldValue)} to ${formatValue(node.newValue)}`;
         default:
           return null;
       }

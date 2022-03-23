@@ -8,8 +8,8 @@ const diff = (file1, file2, formatName = 'stylish') => {
   const path1 = path.resolve(process.cwd(), file1);
   const path2 = path.resolve(process.cwd(), file2);
 
-  const format1 = path.extname(path1);
-  const format2 = path.extname(path2);
+  const format1 = path.extname(path1).slice(1);
+  const format2 = path.extname(path2).slice(1);
 
   const data1 = readFileSync(path1);
   const data2 = readFileSync(path2);

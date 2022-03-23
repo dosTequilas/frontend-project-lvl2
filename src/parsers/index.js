@@ -1,10 +1,10 @@
 import yaml from 'js-yaml';
 
-function parse(data, fileExt) {
-  if (fileExt === '.json') {
+function parse(data, fileType) {
+  if (fileType === 'json') {
     return JSON.parse(data);
   }
-  if (fileExt === '.yml') {
+  if (fileType === 'yml') {
     return yaml.load(data);
   }
   return null;
