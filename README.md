@@ -65,7 +65,7 @@ Will output the format type, you can choose the formatter type: stylish, plain o
 
 This formatter will show the whole structure of a file with '+' or '-' signs in each difference case.
 
-Launch command the fixture to check it:
+Launch command with included fixtures to check it:
 
 ```bash
 make genStylish
@@ -75,7 +75,7 @@ make genStylish
 
 This formatter will show each difference case in a single line, discribing the difference.
 
-Launch command:
+Launch command (with fixtures):
 
 ```bash
 make genPlain
@@ -85,7 +85,7 @@ make genPlain
 
 Sometimes we need the raw tree to check, JSON formatter will show you the difference in JSON format.
 
-Launch command:
+Launch command (with fixtures):
 
 ```bash
 make genJson
